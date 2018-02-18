@@ -20,7 +20,8 @@ app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.send({
-    message: 'Successful'
+    status: 200,
+    message: 'Contact form API'
   });
 });
 
@@ -29,34 +30,33 @@ app.post('/', (req, res) => {
   for(key in req.body) {
     formDetails[key] = req.body[key];
   }
+
   contactForm.create(formDetails, (err, newFormDetails) => {
     if(err) {
-      console.log(err);
-      res.status(403).end();
+      res.status(403).send(err);
     } else {
-      console.log(newFormDetails);
 
       let mailHTML = `<h3>${req.body.name?req.body.name: 'A new User'} submitted the contact us form and here are the details.</h3>`;
+
       for(key in req.body) {
         mailHTML += `<br><p>${key}: ${req.body[key]}</p>`
       }
+
       const mailOptions = {
         from: 'avitest98@gmail.com',
         to: 'avinashb97@gmail.com',
-        subject: 'Nodemailer Test',
+        subject: 'Contact Form Details',
         html: mailHTML
       };
 
       mailTransporter.sendMail(mailOptions, function (err, info) {
          if(err) {
            console.log(err);
-           res.status(400).send({
-             message: 'error occurred'
-           });
+           res.status(400).send(err);
          }
          else {
            res.status(200).send({
-             message: 'Success'
+             message: 'Form Submitted'
            });
          }
       });

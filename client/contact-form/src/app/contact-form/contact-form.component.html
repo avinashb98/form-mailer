@@ -1,0 +1,147 @@
+<div class="container" [hidden] = "!(formStatus === 'not submitted')">
+    <div style="text-align: center">
+      <h1>Contact Form</h1>
+    </div>
+    <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+
+      <h5>Name</h5>
+      <div class="form-group">
+        <input type="text" class="form-control" id="name" required [(ngModel)]="formDetails.name" name="name">
+      </div>
+
+      <br>
+
+      <h5>What is your gender?</h5>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" value="Male" id="male" [(ngModel)]="formDetails.gender">
+        <label class="form-check-label" for="male">
+          Male
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" value="Female" id="female" [(ngModel)]="formDetails.gender">
+        <label class="form-check-label" for="female">
+          Female
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" value="Other" id="other" [(ngModel)]="formDetails.gender">
+        <label class="form-check-label" for="other">
+          Other
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" value="Prefer not to say" id="notPrefer" [(ngModel)]="formDetails.gender">
+        <label class="form-check-label" for="notPrefer">
+          Prefer not to say
+        </label>
+      </div>
+
+      <br>
+
+      <h5>What is your age group?</h5>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="ageGroup" value="below 25" id="below25" [(ngModel)]="formDetails.ageGroup">
+        <label class="form-check-label" for="below25">
+          below 25 years
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="ageGroup" value="26 to 35" id="26to35" [(ngModel)]="formDetails.ageGroup">
+        <label class="form-check-label" for="26to35">
+          26 to 35 years
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="ageGroup" value="36 to 50" id="36to50" [(ngModel)]="formDetails.ageGroup">
+        <label class="form-check-label" for="36to50">
+          36 to 50 years
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="ageGroup" value="above 50" id="above50" [(ngModel)]="formDetails.ageGroup">
+        <label class="form-check-label" for="above50">
+          above 50 years
+        </label>
+      </div>
+
+      <br>
+
+      <h5>How would you like your healthy life-style change care to be delivered?</h5>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="deliveredBy" value="Mobile App" id="mobileApp" [(ngModel)]="formDetails.deliveredBy">
+        <label class="form-check-label" for="mobileApp">
+          Mobile App
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="deliveredBy" value="Personal Instructor over a video call" id="piVideo" [(ngModel)]="formDetails.deliveredBy">
+        <label class="form-check-label" for="piVideo">
+          Personal intstuctor over a video call
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="deliveredBy" value="Personal Instructor in person" id="piPerson" [(ngModel)]="formDetails.deliveredBy">
+        <label class="form-check-label" for="piPerson">
+          Personal intstuctor in person
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="deliveredBy" value="Virtual group sessions" id="virtualGroup" [(ngModel)]="formDetails.deliveredBy">
+        <label class="form-check-label" for="virtualGroup">
+          Virtual group sessions
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="deliveredBy" value="In-person group sessions" id="personGroup" [(ngModel)]="formDetails.deliveredBy">
+        <label class="form-check-label" for="personGroup">
+          In-person group sessions
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="deliveredBy" value="Other" id="other" [(ngModel)]="formDetails.deliveredBy">
+        <label class="form-check-label" for="other">
+          Other
+        </label>
+      </div>
+
+      <br>
+
+      <h5>How comfortable are you with sharing your fitness information (in social media or focus groups)?</h5>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="comfortability" value="Totally comfortable" id="comfortable" [(ngModel)]="formDetails.comfortability">
+        <label class="form-check-label" for="comfortable">
+          Totally comfortable
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="comfortability" value="Open to sharing some of it" id="openToShare" [(ngModel)]="formDetails.comfortability">
+        <label class="form-check-label" for="openToShare">
+          Open to sharing some of it
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="comfortability" value="Not comfortable at all" id="notComfortable" [(ngModel)]="formDetails.comfortability">
+        <label class="form-check-label" for="notComfortable">
+          Not comfortable at all
+        </label>
+      </div>
+      <br>
+
+      <div class="form-group">
+        <label for="otherSpecifications">Anything else you want to specify</label>
+        <input type="text" class="form-control" id="otherSpecifications" required [(ngModel)]="formDetails.otherSpecifications" name="otherSpecifications">
+      </div>
+
+      <button type="submit" class="btn btn-success">Submit</button>
+
+    </form>
+</div>
+
+<div style="margin-top: 20vh;" [hidden]="!(formStatus === 'submitted')" class="container">
+  <h3>Form Succesfully Submitted</h3>
+</div>
+<br>
+<div class="container" [hidden]= "!(formStatus === 'submitting')">
+  <img style="width: 300px;" src="assets/loading.gif" alt="">
+</div>
